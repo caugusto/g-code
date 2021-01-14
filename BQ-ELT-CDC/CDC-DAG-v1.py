@@ -37,7 +37,9 @@ EMAIL = models.Variable.get("email")
 BQ_DATASET = models.Variable.get("dataset_id")
 
 ## Dataflow template to be used
-TEMPLATE = 'gs://dataflow-templates-us-central1/latest/Jdbc_to_BigQuery'
+## Update it according to your deployment region. Example: gs://dataflow-templates-us-central1/latest/Jdbc_to_BigQuery
+
+TEMPLATE = 'gs://dataflow-templates-us-<CHANGEME>"/latest/Jdbc_to_BigQuery'
 
 ### <CHANGEME> needs to be replaced by your own value
 
@@ -45,7 +47,7 @@ ENVIRONMENT = {
     "bypassTempDirValidation": "false",
     "maxWorkers": "20",
     "numWorkers": "1",
-    "serviceAccountEmail": "<CHANGEME>-compute@developer.gserviceaccount.com",
+    "serviceAccountEmail": "<CHANGEME>",
     "tempLocation": "gs://<CHANGEME>",
     "ipConfiguration": "WORKER_IP_UNSPECIFIED",
     "additionalExperiments": [
@@ -58,9 +60,9 @@ PARAMETERS = {
     "driverClassName": "com.mysql.jdbc.Driver",
     "query": "select * from testdb.table1",
     "outputTable": "google.com:caugusto-actifio:Google_CarlosAugusto.table1_staging",
-    "driverJars": "gs://<CHANGEME>/mysql-connector-java-5.1.49-bin.jar",
+    "driverJars": "gs://<CHANGEME>/<CHANGEME>.jar",
     "bigQueryLoadingTemporaryDirectory": "gs://<CHANGEME>",
-    "username": "user1",
+    "username": "<CHANGEME>",
     "password": "<CHANGEME>"
  }
 
